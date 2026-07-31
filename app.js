@@ -11,7 +11,42 @@ app.get("/", function (req, res){
 });
 
 //otro endpoint
+app.get("/otraruta", (req, res)=>{
+    //usando template string
+    res.send(`<h1>Otro ejemplo de ruta</h1
+        <h2>End point con res.send</h2>
+     `)
+})
     
-app.listen(port, () => { console.log( `Servidor en funcionamiento en el puerto: ${port} `); 
+//otro endpoint
+app.get("/ruta2", (req, res)=>{
+    res.json({"nombre": "Karol", "Apellido": "Rivera", "Cargo": "Aprendiz" })
+     
+})
+  
+//otro endpoint
+app.get("/ruta3/:aprendiz/:otrodato", (req, res)=>{
+  const dato_aprendiz = req.params.aprendiz
+  const otro_dato = req.params.otrodato
+    res.json({"nombre": dato_aprendiz, "apellido": otro_dato})
+    
+
+     
+})
+  
+app.get("/ruta4", (req, res)=>{
+    //capturar el parametro de la consulta query
+    const orden = req.query.orden || "sin ordenar"
+    const pagina = req.query.pagina || 1 
+    res.send(`<h1> Listado Aprendices</h1>
+        <p>El listado esta en orden ${orden}</p>
+        <p> Pagina: ${pagina}</p>
+        `)
+})
+
+
+
+app.listen(port, function(){ 
+    console.log( `Servidor: http://localhost:  ${port} `); 
 
 });
