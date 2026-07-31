@@ -1,7 +1,7 @@
 import express from 'express'
 
 const app = express();  
-const port = 3000; 
+const port = process.env.PORT || 3030
 
 app.get("/", (_, res) => { 
     res.send('servidor esxpress ficha 3401781 '); 
